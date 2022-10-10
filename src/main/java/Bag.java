@@ -84,16 +84,22 @@ public abstract class Bag {
      *       and false otherwise.
      */
     public boolean addItem(String item) {
+//        if (this.numberOfContents < this.capacity) {
+////            this.contents = new String[]{Arrays.toString(this.contents) + item};
+//            this.contents = Arrays.copyOf(this.contents, this.contents.length + 1);
+//            this.contents[this.contents.length - 1] = item;
+//            this.numberOfContents += 1;
+//            return true;
+//        } else {
+//            return false;
         if (this.numberOfContents < this.capacity) {
-//            this.contents = new String[]{Arrays.toString(this.contents) + item};
-            this.contents = Arrays.copyOf(this.contents, this.contents.length + 1);
-            this.contents[this.contents.length - 1] = item;
-            this.numberOfContents += 1;
+            this.contents[numberOfContents] = item;
+            numberOfContents++;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
+
 
 
     /**
@@ -108,21 +114,30 @@ public abstract class Bag {
      */
 
     public String popItem() {
+
         if (this.numberOfContents == 0) {
             return null;
-        } else {
-            String[] arr = new String[this.contents.length - 1];
-            String popped = this.contents[this.contents.length - 1];
-
-            for (int i = 0; i < this.contents.length - 1; i++) {
-                arr[i] = this.contents[i];
-
-            }
-//            this.contents = Arrays.copyOf(this.contents, this.contents.length - 1);
-            this.contents = arr;
-            this.numberOfContents -= 1;
-            return popped;
         }
+        String last = this.contents[this.numberOfContents-1];
+        this.contents[this.numberOfContents] = "";
+        this.numberOfContents -= 1;
+        return last;
+
+//        if (this.numberOfContents == 0) {
+//            return null;
+//        } else {
+//            String[] arr = new String[this.contents.length - 1];
+//            String popped = this.contents[this.contents.length - 1];
+//
+//            for (int i = 0; i < this.contents.length - 1; i++) {
+//                arr[i] = this.contents[i];
+//
+//            }
+////            this.contents = Arrays.copyOf(this.contents, this.contents.length - 1);
+//            this.contents = arr;
+//            this.numberOfContents -= 1;
+//            return popped;
+//        }
     }
 
 
